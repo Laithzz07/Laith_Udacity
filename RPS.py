@@ -5,46 +5,15 @@ moves = ['rock', 'paper', 'scissors']
 
 class Player:
     def move(self):
-        return 'rock'
+        pass
 
     def learn(self, my_move, other_move):
         pass
 
 
-def beats(one, two):
-    return ((one == 'rock' and two == 'scissors') or
-            (one == 'scissors' and two == 'paper') or
-            (one == 'paper' and two == 'rock'))
-
-
-class HumanPlayer(Player):
+class RockPlayer(Player):
     def move(self):
-        while True:
-            user_choice = input("Enter rock, paper, scissors or quit: ").lower()
-
-            if user_choice == "quit":
-                return user_choice
-
-            if user_choice in moves:
-                return user_choice
-
-            print("invalid input")
-
-
-class CyclePlayer(Player):
-    def __init__(self):
-        self.last_choice = random.choice(moves)
-
-    def move(self):
-        if self.last_choice == 'rock':
-            return 'paper'
-        elif self.last_choice == 'paper':
-            return 'scissors'
-        else:
-            return 'rock'
-
-    def learn(self, my_move, other_move):
-        self.last_choice = my_move
+        return 'rock'
 
 
 class RandomPlayer(Player):
@@ -63,6 +32,44 @@ class ReflectPlayer(Player):
         self.enemy_choice = other_move
 
 
+class CyclePlayer(Player):
+    def __init__(self):
+        self.last_choice = random.choice(moves)
+
+    def move(self):
+        if self.last_choice == 'rock':
+            return 'paper'
+        elif self.last_choice == 'paper':
+            return 'scissors'
+        else:
+            return 'rock'
+
+    def learn(self, my_move, other_move):
+        self.last_choice = my_move
+
+
+class HumanPlayer(Player):
+    def move(self):
+        while True:
+            user_choice = input(
+                "Enter rock, paper, scissors or quit: "
+            ).lower()
+
+            if user_choice == 'quit':
+                return user_choice
+
+            if user_choice in moves:
+                return user_choice
+
+            print("Invalid input. Try again.")
+
+
+def beats(one, two):
+    return ((one == 'rock' and two == 'scissors') or
+            (one == 'scissors' and two == 'paper') or
+            (one == 'paper' and two == 'rock'))
+
+
 class Game:
     def __init__(self, p1, p2):
         self.player1 = p1
@@ -76,7 +83,7 @@ class Game:
 
         move1 = self.player1.move()
 
-        if move1 == "quit":
+        if move1 == 'quit':
             return False
 
         move2 = self.player2.move()
@@ -85,17 +92,23 @@ class Game:
         print("Player 2:", move2)
 
         if move1 == move2:
-            print("tie")
+            print("It's a tie!")
 
         elif beats(move1, move2):
-            print("player 1 wins this round")
+            print("Player 1 wins this round!")
             self.score1 += 1
 
         else:
-            print("player 2 wins this round")
+            print("Player 2 wins this round!")
             self.score2 += 1
 
-        print("\n     YOUR score ", self.score1," |||| ", self.score2," ENEMY score")
+        print(
+            "\nYOUR score:",
+            self.score1,
+            "||||",
+            self.score2,
+            "ENEMY score"
+        )
 
         self.player1.learn(move1, move2)
         self.player2.learn(move2, move1)
@@ -116,11 +129,13 @@ class Game:
         print("Final score:", self.score1, self.score2)
 
         if self.score1 > self.score2:
-            print("YOU are the winner")
+            print("YOU are the winner!")
+
         elif self.score2 > self.score1:
-            print("player 2 is the winner")
+            print("Player 2 is the winner!")
+
         else:
-            print("draw")
+            print("It's a draw!")
 
 
 if __name__ == '__main__':
