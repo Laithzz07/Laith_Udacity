@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f3f3;
+  padding: 30px;
+}
+
+/* APP */
+
+.app h1 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/*LAYOUT */
+
+.layout {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* LEFT SIDE */
+
+.left-side {
+  flex: 1;
+}
+
+/* PRODUCTS */
+
+.products {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.card {
+  width: 220px;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin-bottom: 15px;
+  color: #555;
+}
+
+/* CART */
+
+.cart-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.cart-card {
+  width: 220px;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.cart-card h3 {
+  margin-bottom: 10px;
+}
+
+.cart-card p {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+/* BUTTONS */
+
+button {
+  padding: 8px 14px;
+  border: none;
+  background-color: #222;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 5px;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #444;
+}
+
+/* CHECKOUT */
+
+.checkout {
+  width: 320px;
+  background-color: white;
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  position: sticky;
+  top: 20px;
+}
+
+.checkout h2 {
+  margin-bottom: 20px;
+}
+
+.checkout p {
+  margin-bottom: 15px;
+}
+
+.checkout input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* RECEIPT */
+
+.receipt {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+  line-height: 1.8;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .checkout {
+    width: 100%;
+  }
+
+  .products,
+  .cart-container {
+    justify-content: center;
+  }
+}
